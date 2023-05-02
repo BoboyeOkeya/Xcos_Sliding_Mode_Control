@@ -7,13 +7,13 @@ This is my first trial of simulating a control system using Scilab and Xcos. I h
 The controller design steps are as follow:
 1. The system dynamics in a state-space representation:
 $$\dot{x_1} = x_2$$
-$$\dot{x_2} = a_1x_2 + a_2x_2 + u$$
+$$\dot{x_2} = a_1x_1^2 + a_2x_2 + u$$
 System uncertainties or unknown: $-1\leq a_1\leq3$ and $-1\leq a_2\leq1 $.
 
 
 2. Define the nominal and bound functions:
 
-->The nominal function represents the parts of the system dynamics that we know and its derived as follows: Let $f = a_1x_1^2 + a_2x_2 = f_1+f_2$; since the uncertainty conditions are $-1\leq a_1\leq3$ and $-1\leq a_2\leq1 $ as stated above, then:
+->The nominal function represents the parts of the system dynamics that we know and its derived as follows: Let $f = a_1x_1^2 + a_2x_2 = f_1+f_2$; since the uncertainty conditions are $-1\leq a_1\leq3$ and $-1\leq a_2\leq1$ as stated above, then:
 
 The nominal $\hat{f_1} = 1x_1^2$ since $a_1 = 1$ the median value of the range [-1,3].
 Likewise, $\hat{f_2} = 0x_2$ since $a_2 = 0$ the median value of the range [-1,1].
@@ -21,11 +21,11 @@ Hence, the nominal function is  $\hat{f} = x_1^2$
 
 ->The bound function can be obtained by subtracting the nominal function from the main function, and getting the magnitude of the result, that is $|f-\hat{f}|$. Hence
 
- $$|f-\hat{f}| = |(a_1-1)x^2 + a_2x_2|$$
+ $$|f-\hat{f}| = |(a_1-1)x_1^2 + a_2x_2|$$
  
  Considering the uncertainty conditions stated earlier for $a_1$ and $a_2$, then the bound function can be assumed to be:
  
-  $$F = |f-\hat{f}| = 2x^2 + |x_2|$$
+  $$F = |f-\hat{f}| = 2x_1^2 + |x_2|$$
 
 
 3. Define the sliding surface **'s'**:
